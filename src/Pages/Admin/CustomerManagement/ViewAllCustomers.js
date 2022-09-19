@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
-
 const ViewAllCustomer = () => {
   const [allCustomer, setAllCustomer] = useState([]);
 
@@ -52,9 +50,10 @@ const ViewAllCustomer = () => {
         <div className="col-md-10">
           <table className="table text-center">
             <thead className="thead-light">
-              <th>Name</th>
               <th>Email</th>
-              <th>Contact Number</th>
+              <th>Name</th>
+
+              <th> Role</th>
 
               <th>Action</th>
             </thead>

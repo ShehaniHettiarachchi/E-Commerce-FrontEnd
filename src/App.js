@@ -1,6 +1,7 @@
 import "./App.css";
 // Public Pages
 import Home from "./Components/Home/Home";
+import Login from "./Components/Login/CustomerLogin";
 
 //Customer Management
 import CustomerRegistration from "./Pages/Customer/CustomerRegister";
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         {/*Public Routes */}
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
 
         {/*Customer Routes*/}
         <Route path="/register" element={<CustomerRegistration />} />
