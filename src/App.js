@@ -7,6 +7,7 @@ import CustomerRegistration from "./Pages/Customer/CustomerRegister";
 
 // Admin Managment
 import ViewAllCustomer from "./Pages/Admin/CustomerManagement/ViewAllCustomers";
+import ViewAllReview from "./Pages/Admin/ReviewManagement/ViewAllReviews"
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -22,6 +23,7 @@ function App() {
 
         {/*Admin Routes*/}
         <Route path="/all-customer" element={<ViewAllCustomer />} />
+        <Route path="/all-review" element={<ViewAllReview />} />
       </Routes>
     </Router>
   );
