@@ -2,6 +2,18 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import {
+  MDBBtn,
+  MDBContainer,
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBRow,
+  MDBCol,
+  MDBIcon,
+  MDBInput,
+} from "mdb-react-ui-kit";
+
 export default function CustomerLogin() {
   const [data, setData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
@@ -39,55 +51,73 @@ export default function CustomerLogin() {
   };
 
   return (
-    <div>
-      <div className="row">
-        <div className="col-lg-12 ">
-          <h1 className="text-center">Customer Login</h1>
-        </div>
-      </div>
-      <br></br>
+    <MDBContainer className="my-5">
+      <MDBCard>
+        <MDBRow className="g-0">
+          <MDBCol md="6">
+            <MDBCardImage
+              src="https://us.123rf.com/450wm/milkos/milkos1903/milkos190301250/118567682-great-bank-millennial-african-american-couple-shopping-online-on-laptop-with-credit-card-on-orange-s.jpg?ver=6"
+              alt="login form"
+              className="rounded-start w-100 h-100"
+            />
+          </MDBCol>
 
-      <div className="row">
-        <div className="col-lg-3 col-0"></div>
-        <div className="col-lg-5 col-12 ml-5">
-          <div className="border ml-3 mr-3 bg-light shadow  ">
-            <form className="mt-3 ml-3 mr-3 mb-3" onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>Email Address</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  name="email"
+          <MDBCol md="6">
+            <MDBCardBody className="d-flex flex-column">
+              <div className="d-flex flex-row mt-2">
+                <MDBIcon
+                  fas
+                  icon="cubes fa-3x me-3"
+                  style={{ color: "#ff6219" }}
+                />
+                <span className="h1 fw-bold mb-0">Logo</span>
+              </div>
+
+              <h5
+                className="fw-normal my-4 pb-3"
+                style={{ letterSpacing: "1px" }}>
+                Sign into your account
+              </h5>
+
+              <form onSubmit={handleSubmit}>
+                <MDBInput
+                  wrapperClass="mb-4"
+                  label="Email address"
+                  id="formControlLg"
                   onChange={handleChange}
                   value={data.email}
-                  placeholder="Email Address"
+                  size="lg"
                 />
-              </div>
-
-              <div className="form-group">
-                <label>Password</label>
-                <input
-                  type="Password"
-                  className="form-control"
-                  name="password"
+                <MDBInput
+                  wrapperClass="mb-4"
+                  label="Password"
+                  id="formControlLg"
                   onChange={handleChange}
                   value={data.password}
-                  placeholder="Password"
+                  size="lg"
                 />
-              </div>
-
-              <br></br>
-              <div className="text-center">
-                <button
-                  type="submit"
-                  className="btn btn-success btn-lg btn-block text-center mb-2">
+                <MDBBtn
+                  className="mb-4 px-5"
+                  size="lg"
+                  color="dark"
+                  type="submit">
                   Login
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+                </MDBBtn>{" "}
+                <br></br>
+                <a className="small text-muted" href="#!">
+                  Forgot password?
+                </a>
+                <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
+                  Don't have an account?{" "}
+                  <a href="#!" style={{ color: "#393f81" }}>
+                    Register here
+                  </a>
+                </p>
+              </form>
+            </MDBCardBody>
+          </MDBCol>
+        </MDBRow>
+      </MDBCard>
+    </MDBContainer>
   );
 }
