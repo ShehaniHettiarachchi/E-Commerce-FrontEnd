@@ -5,14 +5,12 @@ import axios from "axios";
 import {
   MDBBtn,
   MDBContainer,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
   MDBRow,
   MDBCol,
   MDBIcon,
-  MDBInput,
-} from "mdb-react-ui-kit";
+  MDBInput
+}
+from 'mdb-react-ui-kit';
 
 export default function CustomerLogin() {
   const [data, setData] = useState({ email: "", password: "" });
@@ -51,73 +49,42 @@ export default function CustomerLogin() {
   };
 
   return (
-    <MDBContainer className="my-5">
-      <MDBCard>
-        <MDBRow className="g-0">
-          <MDBCol md="6">
-            <MDBCardImage
-              src="https://us.123rf.com/450wm/milkos/milkos1903/milkos190301250/118567682-great-bank-millennial-african-american-couple-shopping-online-on-laptop-with-credit-card-on-orange-s.jpg?ver=6"
-              alt="login form"
-              className="rounded-start w-100 h-100"
-            />
-          </MDBCol>
+    <MDBContainer fluid>
+    <MDBRow>
 
-          <MDBCol md="6">
-            <MDBCardBody className="d-flex flex-column">
-              <div className="d-flex flex-row mt-2">
-                <MDBIcon
-                  fas
-                  icon="cubes fa-3x me-3"
-                  style={{ color: "#ff6219" }}
-                />
-                <span className="h1 fw-bold mb-0">Logo</span>
-              </div>
+      <MDBCol sm='6'>
 
-              <h5
-                className="fw-normal my-4 pb-3"
-                style={{ letterSpacing: "1px" }}>
-                Sign into your account
-              </h5>
+        <div className='d-flex flex-row ps-5 pt-5'>
+          <MDBIcon fas icon="crow fa-3x me-3" style={{ color: '#709085' }}/>
+          
+        </div>
 
-              <form onSubmit={handleSubmit}>
-                <MDBInput
-                  wrapperClass="mb-4"
-                  label="Email address"
-                  id="formControlLg"
-                  onChange={handleChange}
-                  value={data.email}
-                  size="lg"
-                />
-                <MDBInput
-                  wrapperClass="mb-4"
-                  label="Password"
-                  id="formControlLg"
-                  onChange={handleChange}
-                  value={data.password}
-                  size="lg"
-                />
-                <MDBBtn
-                  className="mb-4 px-5"
-                  size="lg"
-                  color="dark"
-                  type="submit">
-                  Login
-                </MDBBtn>{" "}
-                <br></br>
-                <a className="small text-muted" href="#!">
-                  Forgot password?
-                </a>
-                <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
-                  Don't have an account?{" "}
-                  <a href="#!" style={{ color: "#393f81" }}>
-                    Register here
-                  </a>
-                </p>
-              </form>
-            </MDBCardBody>
-          </MDBCol>
-        </MDBRow>
-      </MDBCard>
-    </MDBContainer>
+        <div className='d-flex flex-column justify-content-center h-custom-2 w-75 pt-5'>
+
+          <h3 className="fw-normal mb-3 ps-10 pb-3 mb-4 mx-5" style={{letterSpacing: '1px'}}>Log in</h3>
+
+          <MDBInput wrapperClass='mb-4 mx-5 w-100' label='Email address' id='formControlLg' type='email' size="lg"/>
+          <MDBInput wrapperClass='mb-4 mx-5 w-100' label='Password' id='formControlLg' type='password' size="lg"/>
+
+          <MDBBtn className="mb-4 px-5 mx-5 w-100" color='info' size='lg'>Login</MDBBtn>
+          <p className="small mb-5 pb-lg-2 ms-5 text-center"><a class="text-muted" href="#!"> Forgot password?</a></p>
+          <p className='ms-5 text-center'>Don't have an account? <a href="#!" class="link-info">Register here</a></p>
+
+        </div>
+        </MDBCol>
+        <MDBCol sm='6' className='d-none d-sm-block px-0'>
+        <img src="https://media.istockphoto.com/photos/young-businesswoman-using-digital-tablet-picture-id1332113666?b=1&k=20&m=1332113666&s=170667a&w=0&h=x8mxRKXOgbiXqCsR1hPbmT3ohPNxtPnU92wgphQv3CA="
+          alt="Login image" width="100%" height="120%" style={{objectFit: 'cover', objectPosition: 'left'}} />
+      </MDBCol>
+
+     
+
+      
+
+    </MDBRow>
+
+  </MDBContainer>
+              
+          
   );
 }
