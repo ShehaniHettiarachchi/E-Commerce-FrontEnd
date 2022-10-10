@@ -1,40 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
-
-const ViewCart = () => {
+function ViewCart () {
   const [allCart, setAllCart] = useState([]);
 
   useEffect(() => {
+    //const userId = localStorage.getItem("userId");
     axios
       .get("http://Localhost:8070/cart/")
       .then((res) => setAllCart(res.data))
       .catch((error) => console.log(error));
-  });
+  });  
 
   return (
     <div>
       <br></br>
-      <div className="row">
-        <h1 className="text-center">My Cart</h1>
-      </div>
-
-      <div className="row">
-        <div className="col-lg-9 col-0"></div>
-        <div className="col-lg-3 col-0">
-          <form className="form-inline">
-            <input
-              className="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-success my-2 my-sm-0" type="submit">
-              Search
-            </button>
-          </form>
-        </div>
+      <div className="col">
+        <h1 className="h1 text-center">Shopping Cart</h1>
       </div>
 
       <br></br>
@@ -42,21 +24,25 @@ const ViewCart = () => {
         <div className="col-md-1"></div>
 
         <div className="col-md-10">
-          <table className="table text-center">
-            <thead className="thead-light">
-              <th>Product</th>
+          <table className="table table-hover">
+            <thead className="table-light">
+              <th>Item</th>
               <th></th>
               <th>Price</th>
+              <th>Qty</th>
+              <th>Subtotal</th>
               <th></th>
             </thead>
 
             {allCart.map((cart, key) => (
               <tbody>
                 <tr>
-                  <td>{cart.productName}</td>
                   <td>{cart.productImage}</td>
+                  <td>{cart.productName}</td>                  
                   <td>{cart.productPrice}</td>
-                  <td>{cart.productImage}</td>
+                  <td>{cart.quantity}</td>
+                  <td>{cart.quantity*cart.productPrice}</td>
+                  <td></td>
                </tr>
               </tbody>
             ))}
@@ -73,7 +59,7 @@ const ViewCart = () => {
             onClick={() => {
               window.location.href = "/supplierreport";
             }}>
-            Generate Report
+            Continue Shopping
           </button>
         </div>
       </div>

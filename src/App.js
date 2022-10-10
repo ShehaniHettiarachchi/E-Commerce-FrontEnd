@@ -5,6 +5,7 @@ import Login from "./Components/Login/CustomerLogin";
 
 //Customer Management
 import CustomerRegistration from "./Pages/Customer/CustomerRegister";
+import ViewCart from "./Pages/Customer/ViewCart";
 
 // Admin Managment
 import ViewAllCustomer from "./Pages/Admin/CustomerManagement/ViewAllCustomers";
@@ -22,6 +23,7 @@ function App() {
 
         {/*Customer Routes*/}
         <Route path="/register" element={<CustomerRegistration />} />
+        <Route path="/cart" element={<ViewCart />} />
 
         {/*Admin Routes*/}
         <Route path="/all-customer" element={<ViewAllCustomer />} />
