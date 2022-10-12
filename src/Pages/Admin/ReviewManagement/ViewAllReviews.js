@@ -14,49 +14,48 @@ const ViewAllReviews = () => {
   });
 
   return (
-    <div>
-      <br></br>
+    <div class='responsive'>   
+    <br></br><br></br>
       <div className="row">
-        <h1 className="text-center">All Reviews</h1>
-      </div>
-
-      <div className="row">
+        <div className="col-md-1"></div>
+        <div className="col-md-10">
+        <div className="row">
+        <h1 className="text-center">Reviwes</h1>
+      </div><div className="row">
         <div className="col-lg-9 col-0"></div>
-        <div className="col-lg-3 col-0">
-          <form className="form-inline">
-            <input
-              className="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-success my-2 my-sm-0" type="submit">
+        <div className="col-lg-3 col-2">
+          <form className="form-inline responsive">
+          <div class="input-group">
+            <input type="search" class="form-control" placeholder="Search"
+              aria-label="Search"/>            
+              <button className="btn btn-success my-2 my-sm-0" type="submit">
               Search
-            </button>
+              </button>
+            
+          </div>       
           </form>
         </div>
       </div>
-
-      <br></br>
-      <div className="row">
-        <div className="col-md-1"></div>
-
-        <div className="col-md-10">
-          <table className="table text-center">
-            <thead className="thead-light">
+          <table className="table table-hover text-center responsive">
+            
+          <thead className="thead-light">
+              <tr>
               <th>Product</th>
               <th>Ratings</th>
-              <th>Review</th>
+              <th>Comment</th>
+              <th>Time</th>
+              </tr>
             </thead>
-
-            {allReviews.map((review, key) => (
+            
+            {allReviews.map((review, key) => (              
               <tbody>
                 <tr>
                   <td>{review.productId}</td>
-                  <td>{review.rating}</td>
+                  <td>{review.rating}</td>                  
                   <td>{review.comment}</td>
-               </tr>
-              </tbody>
+                  <td>{review.time}</td>                
+                </tr>
+              </tbody>          
             ))}
           </table>
         </div>
@@ -67,16 +66,16 @@ const ViewAllReviews = () => {
         <div className="col-md-1"></div>
         <div className="col-md-10">
           <button
-            className="btn btn-primary mb-2"
+            className="btn btn-primary  mb-2"
             onClick={() => {
-              window.location.href = "/supplierreport";
+              window.location.href = "/";
             }}>
             Generate Report
           </button>
         </div>
       </div>
     </div>
-  );
+  );  
 };
 
 export default ViewAllReviews;
