@@ -12,18 +12,66 @@ function ViewCart () {
       .catch((error) => console.log(error));
   });  
 
-  return (
-    <div>
-      <br></br>
-      <div className="col">
-        <h1 className="h1 text-center">Shopping Cart</h1>
-      </div>
+  const remove = (id) => {
+    axios
+      .delete(`http://localhost:8070/cart/delete/${id}`)
+      .then((res) => alert("Item Removed"));
 
-      <br></br>
+    setAllCart(allCart.filter((elem) => elem.id !== id));
+  };
+
+  const decrementCount=(id,cart)=>{
+
+    const exist = cart.find((item) => item._id === id);
+    const quantity = exist.quantity - 1;
+    if(exist){
+        const newQty = {
+            quantity:quantity
+        };
+
+        axios.put('http://localhost:8070/cart' + `/update/${id}`, newQty);
+    }
+}
+
+//Update the count by increasing the qty by 1
+  const incrementCount =(id,cart)=>{
+
+    const exist = cart.find((item) => item._id === id);
+
+    if(exist){
+        const quantity = exist.quantity + 1;
+        const newQty = {
+            quantity:quantity
+        };
+
+        axios.put('http://localhost:8070/cart' + `/update/${id}`, newQty);
+    }
+}
+
+
+  return (
+    <div class='responsive'>   
+    <br></br><br></br>
       <div className="row">
         <div className="col-md-1"></div>
-
         <div className="col-md-10">
+        <div className="row">
+        <h1 className="text-start">Shopping Cart</h1>
+      </div><div className="row">
+        <div className="col-lg-9 col-0"></div>
+        <div className="col-lg-3 col-2">
+          <form className="form-inline responsive">
+          <div class="input-group">
+            <input type="search" class="form-control" placeholder="Search"
+              aria-label="Search"/>            
+              <button className="btn btn-success my-2 my-sm-0" type="submit">
+              Search
+              </button>
+            
+          </div>       
+          </form>
+        </div>
+      </div>
           <table className="table table-hover">
             <thead className="table-light">
               <th>Item</th>
@@ -39,10 +87,18 @@ function ViewCart () {
                 <tr>
                   <td>{cart.productImage}</td>
                   <td>{cart.productName}</td>                  
-                  <td>{cart.productPrice}</td>
-                  <td>{cart.quantity}</td>
-                  <td>{cart.quantity*cart.productPrice}</td>
-                  <td></td>
+                  <td>Rs.{cart.productPrice}</td>
+                  <td>
+                            <button className = "btn btn-outline-info" onClick ={() => decrementCount(cart._id)} style={{color:'#000000'}}  >-</button>{/*Decrement*/}
+                            <label  className="text-center fs-6" name = "qty" style={{width:30 , height:30}} value = {cart.quantity} >{cart.quantity}</label>
+                            <button className = "btn btn-outline-info" onClick ={() => incrementCount(cart._id)} style={{color:'#000000', marginLeft:5}} >+</button>{/*Decrement*/}</td>
+                  <td>Rs.{cart.quantity*cart.productPrice}</td>
+                  <td><button className="btn btn-outline-danger btn-sm" onClick={() => remove(cart._id)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+</svg>
+</button></td>
                </tr>
               </tbody>
             ))}
