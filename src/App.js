@@ -8,6 +8,7 @@ import CustomerRegistration from "./Pages/Customer/CustomerRegister";
 import ViewCart from "./Pages/Customer/ViewCart";
 import WishList from "./Pages/Customer/WishList";
 
+
 // Admin Managment
 import ViewAllCustomer from "./Pages/Admin/CustomerManagement/ViewAllCustomers";
 import ViewAllReview from "./Pages/Admin/ReviewManagement/ViewAllReviews"

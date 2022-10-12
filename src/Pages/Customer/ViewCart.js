@@ -5,6 +5,7 @@ const ViewCart = () => {
   const [allCart, setAllCart] = useState([]);
 
   useEffect(() => {
+    //const userId = localStorage.getItem("userId");
     axios
       .get("http://Localhost:8070/cart/")
       .then((res) => setAllCart(res.data))
@@ -76,6 +77,7 @@ const deleteCart = (id) => {
               <th></th>
               <th>Unit Price</th>
               <th>Quantity</th>
+
               <th>Subtotal</th>
               <th></th>
               </tr>
@@ -104,6 +106,8 @@ const deleteCart = (id) => {
 
                 </tr>
               </tbody>          
+                 
+
             ))}
           </table>
         </div>
