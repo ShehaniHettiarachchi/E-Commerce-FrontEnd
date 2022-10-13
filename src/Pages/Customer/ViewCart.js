@@ -5,15 +5,15 @@ const ViewCart = () => {
   const [allCart, setAllCart] = useState([]);
 
   useEffect(() => {
-    //const userId = localStorage.getItem("userId");
+    const userId = localStorage.getItem("userId");
     axios
       .get("http://Localhost:8070/cart/")
       .then((res) => setAllCart(res.data))
   });
 
-  const decrementCount = async (cart,id)=>{
+  function decrementCount (id){
 
-    const exist = cart.find((cart) => cart.id === id);
+    const exist = allCart.find((cart) => cart._id === id);
     const quantity = exist.quantity - 1;
     if(exist){
         const newQty = {
@@ -24,9 +24,9 @@ const ViewCart = () => {
     }
 };
 
-const incrementCount = async(id,cart)=>{
+function incrementCount (id){
 
-  const exist = cart.find((item) => item.id === id);
+  const exist = allCart.find((cart) => cart._id === id);
 
   if(exist){
       const quantity = exist.quantity + 1;
@@ -91,9 +91,9 @@ const deleteCart = (id) => {
                   <td>{cart.productName}</td>                  
                   <td>Rs.{cart.productPrice}</td>
                   <td>               
-                    <button className = "btn btn-dark-outline" onClick ={() => decrementCount(cart.id)} >-</button>{/*Decrement*/}
+                    <button className = "btn btn-dark-outline" onClick ={() => decrementCount(cart._id)} >-</button>{/*Decrement*/}
                     <label  className="text-center fs-6" name = "qty" style={{width:30 , height:30}} value = {cart.quantity} >{cart.quantity}</label>
-                    <button className = "btn btn-dark-outline" onClick ={() => incrementCount(cart.id)} >+</button>{/*Decrement*/}
+                    <button className = "btn btn-dark-outline" onClick ={() => incrementCount(cart._id)} >+</button>{/*Decrement*/}
                   </td>
                   
                   <td>Rs.{cart.productPrice*cart.quantity}</td>
