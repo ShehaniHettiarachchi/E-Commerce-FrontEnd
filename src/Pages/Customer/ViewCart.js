@@ -5,7 +5,7 @@ const ViewCart = () => {
   const [allCart, setAllCart] = useState([]);
 
   useEffect(() => {
-    const userId = localStorage.getItem("userId");
+    //const userId = localStorage.getItem("userId");
     axios
       .get("http://Localhost:8070/cart/")
       .then((res) => setAllCart(res.data))
@@ -14,13 +14,18 @@ const ViewCart = () => {
   function decrementCount (id){
 
     const exist = allCart.find((cart) => cart._id === id);
-    const quantity = exist.quantity - 1;
+  
     if(exist){
+      const quantity = exist.quantity - 1;
+      if(quantity <1){
+        quantity = 1
+      }
+
         const newQty = {
             quantity:quantity
         };
         axios.put(`http://localhost:8070/cart/update/${id}`, newQty);
-        console.log("hello");
+
     }
 };
 
