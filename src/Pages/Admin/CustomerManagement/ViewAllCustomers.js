@@ -1,97 +1,111 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link, useParams } from "react-router-dom";
+
+import {
+  MDBBadge,
+  MDBBtn,
+  MDBTable,
+  MDBTableHead,
+  MDBTableBody,
+} from "mdb-react-ui-kit";
 
 const ViewAllCustomer = () => {
   const [allCustomer, setAllCustomer] = useState([]);
+  const [searchTerm, setSearchTerm] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://Localhost:8070/customer/")
+      .get("http://Localhost:8070/customer")
       .then((res) => setAllCustomer(res.data))
       .catch((error) => console.log(error));
   });
 
-  const deleteCustomer = (id) => {
-    axios
-      .delete(`http://localhost:8070/customer/delete/${id}`)
-      .then((res) => alert("Customer Deleted"));
-
-    setAllCustomer(allCustomer.filter((elem) => elem.id !== id));
-  };
-
   return (
-    <div>
+    <div className="d-flex flex-column justify-content-center pt-3 mb-2 ps-5 pb-5 sm-6">
       <br></br>
       <div className="row">
-        <h1 className="text-center">User Details</h1>
+        <h1
+          className="fw-bold mb-2 ps-5 pb-5 text-center"
+          style={{ color: "#39A2DB" }}>
+          User Details
+        </h1>
       </div>
 
       <div className="row">
-        <div className="col-lg-9 col-0"></div>
-        <div className="col-lg-3 col-0">
+        <div className="col-lg-8 col-0 "></div>
+        <div className="col-lg-4 col-0">
           <form className="form-inline">
-            <input
-              className="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-success my-2 my-sm-0" type="submit">
-              Search
-            </button>
+            <div class="input-group ">
+              <input
+                type="search"
+                class="form-control "
+                placeholder="Search"
+                aria-label="Search"
+                aria-describedby="search-addon"
+                onChange={(event) => {
+                  setSearchTerm(event.target.value);
+                }}
+              />
+              <button type="button" class="btn btn-dark rounded-right">
+                search
+              </button>
+            </div>
           </form>
         </div>
       </div>
 
-      <br></br>
-      <div className="row">
-        <div className="col-md-1"></div>
+      <div className="pt-5 pb-lg-2 mb-2 mt-1 px-7"></div>
+      <MDBTable align="middle ">
+        <MDBTableHead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Role</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </MDBTableHead>
 
-        <div className="col-md-10">
-          <table className="table text-center">
-            <thead className="thead-light">
-              <th>Email</th>
-              <th>Name</th>
+        {allCustomer
+          .filter((val) => {
+            if (searchTerm == "") {
+              return val;
+            } else if (
+              val.name.toLowerCase().includes(searchTerm.toLowerCase())
+            ) {
+              return val;
+            } else if (
+              val.permissionLevel
+                .toLowerCase()
+                .includes(searchTerm.toLowerCase())
+            ) {
+              return val;
+            }
+          })
+          .map((setAllCustomer, key) => (
+            <MDBTableBody>
+              <tr>
+                <td>
+                  <div className="d-flex align-items-center">
+                    <div className="ms-0">
+                      <p className="fw-bold mb-1">{setAllCustomer.name}</p>
+                      <p className="text-muted mb-1">{setAllCustomer.email}</p>
+                    </div>
+                  </div>
+                </td>
 
-              <th> Role</th>
+                <td>
+                  <MDBBadge color="success" pill>
+                    {setAllCustomer.permissionLevel}
+                  </MDBBadge>
+                </td>
 
-              <th>Action</th>
-            </thead>
-
-            {allCustomer.map((customer, key) => (
-              <tbody>
-                <tr>
-                  <td>{customer.name}</td>
-                  <td>{customer.email}</td>
-                  <td>{customer.phone_number}</td>
-
-                  <td>
-                    <button
-                      onClick={() => deleteCustomer(customer._id)}
-                      className="btn btn-danger">
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            ))}
-          </table>
-        </div>
-        <div className="col-md-1"></div>
-      </div>
-
-      <div className="row">
-        <div className="col-md-1"></div>
-        <div className="col-md-10">
-          <button
-            className="btn btn-primary mb-2"
-            onClick={() => {
-              window.location.href = "/supplierreport";
-            }}>
-            Generate Customer Report
-          </button>
-        </div>
-      </div>
+                <td>
+                  <a href="#"> Edit </a>
+                </td>
+              </tr>
+            </MDBTableBody>
+          ))}
+      </MDBTable>
     </div>
   );
 };

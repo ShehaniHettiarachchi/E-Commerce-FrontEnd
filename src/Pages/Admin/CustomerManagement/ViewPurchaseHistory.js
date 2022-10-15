@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const ViewAllReviews = () => {
-  const [allReviews, setAllReviews] = useState([]);
+import { Link, useParams } from "react-router-dom";
+
+const ViewOrders = () => {
+  const [allOrder, setAllOrder] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://Localhost:8070/review/")
-      .then((res) => setAllReviews(res.data))
+      .get("http://Localhost:8070/orders/")
+      .then((res) => setAllOrder(res.data))
       .catch((error) => console.log(error));
   });
-
   return (
     <div>
       <br></br>
       <div className="row">
-        <h1 className="text-center">All Reviews</h1>
+        <h1 className="text-center">Customer Purchase Summary</h1>
       </div>
 
       <div className="row">
@@ -42,17 +43,19 @@ const ViewAllReviews = () => {
         <div className="col-md-10">
           <table className="table text-center">
             <thead className="thead-light">
-              <th>Product</th>
-              <th>Ratings</th>
-              <th>Review</th>
+              <th>Email</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Purchase Date</th>
             </thead>
 
-            {allReviews.map((review, key) => (
+            {allOrder.map((order, key) => (
               <tbody>
                 <tr>
-                  <td>{review.productId}</td>
-                  <td>{review.rating}</td>
-                  <td>{review.comment}</td>
+                  <td>{supplier.customer}</td>
+                  <td>{supplier.product}</td>
+                  <td>{supplier.quantity}</td>
+                  <td>{supplier.createdAt}</td>
                 </tr>
               </tbody>
             ))}
@@ -67,7 +70,7 @@ const ViewAllReviews = () => {
           <button
             className="btn btn-primary mb-2"
             onClick={() => {
-              window.location.href = "/supplierreport";
+              window.location.href = "/purchasereport";
             }}>
             Generate Report
           </button>
@@ -77,4 +80,4 @@ const ViewAllReviews = () => {
   );
 };
 
-export default ViewAllReviews;
+export default ViewOrders;

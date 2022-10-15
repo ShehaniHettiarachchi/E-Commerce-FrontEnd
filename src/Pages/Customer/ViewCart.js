@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function ViewCart () {
+function ViewCart() {
   const [allCart, setAllCart] = useState([]);
 
   useEffect(() => {
@@ -10,7 +10,7 @@ function ViewCart () {
       .get("http://Localhost:8070/cart/")
       .then((res) => setAllCart(res.data))
       .catch((error) => console.log(error));
-  });  
+  });
 
   return (
     <div>
@@ -38,12 +38,12 @@ function ViewCart () {
               <tbody>
                 <tr>
                   <td>{cart.productImage}</td>
-                  <td>{cart.productName}</td>                  
+                  <td>{cart.productName}</td>
                   <td>{cart.productPrice}</td>
                   <td>{cart.quantity}</td>
-                  <td>{cart.quantity*cart.productPrice}</td>
+                  <td>{cart.quantity * cart.productPrice}</td>
                   <td></td>
-               </tr>
+                </tr>
               </tbody>
             ))}
           </table>
@@ -65,6 +65,6 @@ function ViewCart () {
       </div>
     </div>
   );
-};
+}
 
 export default ViewCart;
