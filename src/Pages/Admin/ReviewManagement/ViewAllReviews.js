@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
-
 const ViewAllReviews = () => {
   const [allReviews, setAllReviews] = useState([]);
 
@@ -53,6 +51,8 @@ const ViewAllReviews = () => {
                   <td>{review.productId}</td>
                   <td>{review.rating}</td>                  
                   <td>{review.comment}</td>
+                </tr>
+              </tbody>
                   <td>{review.time}</td>                
                 </tr>
               </tbody>          

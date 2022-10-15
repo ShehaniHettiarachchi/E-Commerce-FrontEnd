@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+
+function ViewCart() {
 const ViewCart = () => {
+
   const [allCart, setAllCart] = useState([]);
 
   useEffect(() => {
@@ -9,6 +12,8 @@ const ViewCart = () => {
     axios
       .get("http://Localhost:8070/cart/")
       .then((res) => setAllCart(res.data))
+      .catch((error) => console.log(error));
+
   });
 
   const decrementCount = async (cart,id)=>{
@@ -88,6 +93,14 @@ const deleteCart = (id) => {
               <tbody>
                 <tr>
                   <td>{cart.productImage}</td>
+                  <td>{cart.productName}</td>
+                  <td>{cart.productPrice}</td>
+                  <td>{cart.quantity}</td>
+                  <td>{cart.quantity * cart.productPrice}</td>
+                  <td></td>
+                </tr>
+              </tbody>
+
                   <td>{cart.productName}</td>                  
                   <td>Rs.{cart.productPrice}</td>
                   <td>               
@@ -127,6 +140,6 @@ const deleteCart = (id) => {
       </div>
     </div>
   );
-};
+}
 
 export default ViewCart;
