@@ -7,6 +7,8 @@ import CustomerRegistration from "./Pages/Customer/CustomerRegister";
 
 // Admin Managment
 import ViewAllCustomer from "./Pages/Admin/CustomerManagement/ViewAllCustomers";
+import ViewAllOrders from "./Pages/Admin/OrderManagement/ViewAllOrders"
+import ViewSingleOrder from "./Pages/Admin/OrderManagement/ViewSingleOrder"
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
@@ -22,6 +24,9 @@ function App() {
 
         {/*Admin Routes*/}
         <Route path="/all-customer" element={<ViewAllCustomer />} />
+        <Route path="/all-orders" element={<ViewAllOrders />} />
+        <Route path="/order" element={<ViewSingleOrder />} />
+
       </Routes>
     </Router>
   );
