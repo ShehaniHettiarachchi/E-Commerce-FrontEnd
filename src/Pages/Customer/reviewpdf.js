@@ -12,10 +12,9 @@ export default function StockPdf(props) {
 
     doc.setFontSize(15);
 
-    const title = "Review Report";
-    const headers = [["Product Name", "Ratings", "Comment", "Time"]];
-
-    const data = props.data.map(elt => [elt.productId, elt.rating, elt.comment, elt.time]);
+    const title = "Review Report";    
+    const headers = [["Product Name", "Comment", "Time"]];
+    const data = props.data.map(elt => [elt.productId, elt.comment, elt.time]);
 
     let content = {
       startY: 50,
@@ -41,6 +40,8 @@ export default function StockPdf(props) {
   }
 
   return (
-    <button onClick={() => exportPDF()} className="btn primary-btn sfont-size" ><i class="fas fa-download"></i> Review Report</button>
+    <div className="col-md-10">
+    <button onClick={() => exportPDF()} className="btn btn-primary  mb-2 rounded-pill px-4" >Report</button>
+    </div>
   )
 }
