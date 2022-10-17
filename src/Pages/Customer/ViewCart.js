@@ -19,6 +19,7 @@ const ViewCart = () => {
       var quantity = exist.quantity - 1;
       if(quantity <1){
         quantity = 1
+        alert("Cannot decrement the quantity");
       }
 
         const newQty = {
@@ -34,7 +35,7 @@ function incrementCount (id){
   const exist = allCart.find((cart) => cart._id === id);
 
   if(exist){
-      var quantity = exist.quantity + 1;
+      var quantity = exist.quantity + 1;      
       const newQty = {
           quantity:quantity
       };
@@ -96,9 +97,9 @@ const deleteCart = (id) => {
                   <td>{cart.productName}</td>                  
                   <td>Rs.{cart.productPrice}</td>
                   <td>               
-                    <button className = "btn btn-dark-outline" onClick ={() => decrementCount(cart._id)} >-</button>{/*Decrement*/}
+                    <button className = "btn btn-info-outline" onClick ={() => decrementCount(cart._id)} >-</button>{/*Decrement*/}
                     <label  className="text-center fs-6" name = "qty" style={{width:30 , height:30}} value = {cart.quantity} >{cart.quantity}</label>
-                    <button className = "btn btn-dark-outline" onClick ={() => incrementCount(cart._id)} >+</button>{/*Decrement*/}
+                    <button className = "btn btn-info-outline" onClick ={() => incrementCount(cart._id)} >+</button>{/*Decrement*/}
                   </td>
                   
                   <td>Rs.{cart.productPrice*cart.quantity}</td>
