@@ -3,6 +3,7 @@ import axios from "axios";
 
 const ViewCart = () => {
   const [allCart, setAllCart] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     //const userId = localStorage.getItem("userId");
@@ -66,7 +67,10 @@ const deleteCart = (id) => {
           <form className="form-inline responsive">
           <div class="input-group">
             <input type="search" class="form-control" placeholder="Search"
-              aria-label="Search"/>            
+              aria-label="Search"
+              onChange={(event)=> {
+                setSearchTerm(event.target.value)
+              }}/>            
               <button className="btn btn-success my-2 my-sm-0" type="submit">
               Search
               </button>
@@ -90,7 +94,13 @@ const deleteCart = (id) => {
               </tr>
             </thead>
             
-            {allCart.map((cart, key) => (              
+            {allCart.filter((val)=> {
+                if(searchTerm == "") {
+                  return val
+                } else if(val.productName.toLowerCase().includes(searchTerm.toLowerCase())) {
+                  return val
+                }
+              }).map((cart, key) => (              
               <tbody>
                 <tr>
                   <td>{cart.productImage}</td>
