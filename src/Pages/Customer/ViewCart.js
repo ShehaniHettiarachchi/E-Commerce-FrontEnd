@@ -16,7 +16,7 @@ const ViewCart = () => {
     const exist = allCart.find((cart) => cart._id === id);
   
     if(exist){
-      const quantity = exist.quantity - 1;
+      var quantity = exist.quantity - 1;
       if(quantity <1){
         quantity = 1
       }
@@ -34,7 +34,7 @@ function incrementCount (id){
   const exist = allCart.find((cart) => cart._id === id);
 
   if(exist){
-      const quantity = exist.quantity + 1;
+      var quantity = exist.quantity + 1;
       const newQty = {
           quantity:quantity
       };
