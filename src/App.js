@@ -10,7 +10,7 @@ import ViewCart from "./Pages/Customer/ViewCart";
 // Admin Managment
 import ViewAllCustomer from "./Pages/Admin/CustomerManagement/ViewAllCustomers";
 import ViewAllReview from "./Pages/Admin/ReviewManagement/ViewAllReviews";
-
+import ViewPurchaseHistory from "./Pages/Admin/CustomerManagement/ViewPurchaseHistory";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -28,6 +28,7 @@ function App() {
         {/*Admin Routes*/}
         <Route path="/all-review" element={<ViewAllReview />} />
         <Route path="/customer" element={<ViewAllCustomer />} />
+        <Route path="/order" element={<ViewPurchaseHistory />} />
       </Routes>
     </Router>
   );
