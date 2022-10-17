@@ -78,7 +78,7 @@ const remove = (id) => {
         <div className="col-md-1"></div>
         <div className="col-md-10">
           <button
-            className="btn btn-primary  mb-2"
+            className="btn btn-primary  mb-2 rounded-pill px-4"
             onClick={() => {
               window.location.href = "/";
             }}>

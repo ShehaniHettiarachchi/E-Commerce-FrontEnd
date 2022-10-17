@@ -7,6 +7,8 @@ import Login from "./Components/Login/CustomerLogin";
 import CustomerRegistration from "./Pages/Customer/CustomerRegister";
 import ViewCart from "./Pages/Customer/ViewCart";
 import WishList from "./Pages/Customer/WishList";
+import AddReview from "./Pages/Customer/AddReview";
+
 
 // Admin Managment
 import ViewAllCustomer from "./Pages/Admin/CustomerManagement/ViewAllCustomers";
@@ -26,6 +28,7 @@ function App() {
         <Route path="/register" element={<CustomerRegistration />} />
         <Route path="/cart" element={<ViewCart />} />
         <Route path="/wishlist" element={<WishList />} />
+        <Route path="/add-review" element={<AddReview />} />
 
         {/*Admin Routes*/}
         <Route path="/all-review" element={<ViewAllReview />} />

@@ -16,25 +16,30 @@ const ViewCart = () => {
 
   });
 
-  const decrementCount = async (cart,id)=>{
+  function decrementCount (id){
 
-    const exist = cart.find((cart) => cart.id === id);
-    const quantity = exist.quantity - 1;
+    const exist = allCart.find((cart) => cart._id === id);
+  
     if(exist){
+      var quantity = exist.quantity - 1;
+      if(quantity <1){
+        quantity = 1
+      }
+
         const newQty = {
             quantity:quantity
         };
         axios.put(`http://localhost:8070/cart/update/${id}`, newQty);
-        console.log("hello");
+
     }
 };
 
-const incrementCount = async(id,cart)=>{
+function incrementCount (id){
 
-  const exist = cart.find((item) => item.id === id);
+  const exist = allCart.find((cart) => cart._id === id);
 
   if(exist){
-      const quantity = exist.quantity + 1;
+      var quantity = exist.quantity + 1;
       const newQty = {
           quantity:quantity
       };
@@ -104,9 +109,9 @@ const deleteCart = (id) => {
                   <td>{cart.productName}</td>                  
                   <td>Rs.{cart.productPrice}</td>
                   <td>               
-                    <button className = "btn btn-dark-outline" onClick ={() => decrementCount(cart.id)} >-</button>{/*Decrement*/}
+                    <button className = "btn btn-dark-outline" onClick ={() => decrementCount(cart._id)} >-</button>{/*Decrement*/}
                     <label  className="text-center fs-6" name = "qty" style={{width:30 , height:30}} value = {cart.quantity} >{cart.quantity}</label>
-                    <button className = "btn btn-dark-outline" onClick ={() => incrementCount(cart.id)} >+</button>{/*Decrement*/}
+                    <button className = "btn btn-dark-outline" onClick ={() => incrementCount(cart._id)} >+</button>{/*Decrement*/}
                   </td>
                   
                   <td>Rs.{cart.productPrice*cart.quantity}</td>
@@ -130,7 +135,7 @@ const deleteCart = (id) => {
         <div className="col-md-1"></div>
         <div className="col-md-10">
           <button
-            className="btn btn-primary  mb-2"
+            className="btn btn-primary  mb-2 rounded-pill px-4"
             onClick={() => {
               window.location.href = "/";
             }}>
