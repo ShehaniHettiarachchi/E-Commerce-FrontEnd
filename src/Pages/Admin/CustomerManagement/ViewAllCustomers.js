@@ -4,10 +4,7 @@ import { Link, useParams } from "react-router-dom";
 
 import {
   MDBBadge,
-  MDBBtn,
-  MDBTable,
-  MDBTableHead,
-  MDBTableBody,
+
 } from "mdb-react-ui-kit";
 
 const ViewAllCustomer = () => {
@@ -22,18 +19,18 @@ const ViewAllCustomer = () => {
   });
 
   return (
-    <div className="d-flex flex-column justify-content-center pt-3 mb-2 ps-5 pb-5 sm-6">
+    <div >
       <br></br>
       <div className="row">
         <h1
           className="fw-bold mb-2 ps-5 pb-5 text-center"
-          style={{ color: "#39A2DB" }}>
+          style={{ color: "#001E6C" }}>
           User Details
         </h1>
       </div>
 
       <div className="row">
-        <div className="col-lg-8 col-0 "></div>
+        <div className="col-lg-7 col-0 "></div>
         <div className="col-lg-4 col-0">
           <form className="form-inline">
             <div class="input-group ">
@@ -47,24 +44,24 @@ const ViewAllCustomer = () => {
                   setSearchTerm(event.target.value);
                 }}
               />
-              <button type="button" class="btn btn-dark rounded-right">
-                search
-              </button>
+              
             </div>
           </form>
         </div>
       </div>
 
-      <div className="pt-5 pb-lg-2 mb-2 mt-1 px-7"></div>
-      <MDBTable align="middle ">
-        <MDBTableHead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Role</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </MDBTableHead>
+      <div className="row">
+        <div className="col-md-1"></div>
 
+        <div className="col-md-10 pt-5">
+        <table className="table text-left">
+            <thead className="thead-light " style={{ color: "#193498" }}>
+            
+            <th><h5 className="fw-bold">Name</h5></th>
+            <th><h5 className="fw-bold">Role</h5></th>
+            <th><h5 className="fw-bold">Actions</h5></th>
+          
+          </thead>
         {allCustomer
           .filter((val) => {
             if (searchTerm == "") {
@@ -82,15 +79,15 @@ const ViewAllCustomer = () => {
             }
           })
           .map((setAllCustomer, key) => (
-            <MDBTableBody>
+            <tbody>
               <tr>
                 <td>
-                  <div className="d-flex align-items-center">
+                  
                     <div className="ms-0">
                       <p className="fw-bold mb-1">{setAllCustomer.name}</p>
                       <p className="text-muted mb-1">{setAllCustomer.email}</p>
                     </div>
-                  </div>
+                 
                 </td>
 
                 <td>
@@ -103,10 +100,14 @@ const ViewAllCustomer = () => {
                   <a href="#"> Edit </a>
                 </td>
               </tr>
-            </MDBTableBody>
+            </tbody>
           ))}
-      </MDBTable>
+     </table>
+      </div>
+        <div className="col-md-1"></div>
+      </div>
     </div>
+
   );
 };
 

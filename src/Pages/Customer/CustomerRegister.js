@@ -1,6 +1,7 @@
 import React, { useState, useForm, FormValues } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import makeToast from "../../Components/toast/index";
 
 import {
   MDBContainer,
@@ -17,13 +18,8 @@ export default function CustomerRegister() {
   const [email, setEmail] = useState("");
   const [phone_number, setPhone_number] = useState("");
   const [password, setPassword] = useState("");
-  const [data, setData] = useState({
-    name: "",
-    email: "",
-    phone_number: "",
-    password: "",
-    repeatPassword: "",
-  });
+  
+
 
   const navigate = useNavigate();
   const { reset } =
@@ -35,7 +31,7 @@ export default function CustomerRegister() {
         email: "",
         phone_number: "",
         password: "",
-        repeatPassword: "",
+        
       },
     };
 
@@ -52,8 +48,8 @@ export default function CustomerRegister() {
     axios
       .post("http://Localhost:8070/customer/register", newCustomer)
       .then(() => {
-        alert("Customer Registration Successfull...!!!");
-
+        makeToast({type : "success", message: "Registration Successful"});
+     
         setName(" ");
         setEmail("");
         setPhone_number("");
@@ -61,7 +57,7 @@ export default function CustomerRegister() {
         navigate("");
       })
       .catch((err) => {
-        alert(err);
+        makeToast({type : "error", message: "Invalid Email"});
       });
   }
 
@@ -82,7 +78,7 @@ export default function CustomerRegister() {
                 />
               </MDBCol>
 
-              <MDBCol md="6">
+              <MDBCol md="1">
                 <MDBCardBody
                   className="text-black d-flex flex-column justify-content-center "
                   style={{ maxWidth: "620px" }}>
@@ -147,14 +143,12 @@ export default function CustomerRegister() {
                     </MDBRow>
 
                     <div className="d-flex justify-content-end pt-3">
-                      <button
+                      <button 
+                        
+                      
                         type="button"
                         className="btn btn-secondary btn-sl text-center fw-normal text-white pt-2 mb-4 mx-1 w-50"
-                        onClick={() => {
-                          reset({
-                            name: "",
-                          });
-                        }}>
+                        >
                         Reset All
                       </button>
                       <button
