@@ -55,6 +55,9 @@ function sendData(e) {
               <hr className="w-25 mx-auto" />
             </div>
           </div>
+          <div className="row">
+            
+          </div>
           <div className="row">            
             <div className="col-md-6">
               <form onSubmit={sendData}>
@@ -93,7 +96,7 @@ function sendData(e) {
                     className="form-control"
                     id="comment"
                     rows="5"
-                    maxLength={500}
+                    maxLength={100}
                     onChange={(e) => {
                         setComment(e.target.value);
                     }
