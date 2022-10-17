@@ -1,36 +1,45 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
-export default function AddReview() {
-  const [ratings, setRatings] = useState("");
+function AddReview() {
+  const [productName, setProductName] = useState("");
   const [comment, setComment] = useState("");
-  const [productId, setProductId] = useState("");
-  const [userId, setUserId] = useState("");  
+  const [UserName, setUserName] = useState("");
+  /*const [data, setData] = useState({
+    comment:"",
+    productName:"",
+    userName:"",
+  });
 
-  function sendData(e) {
+  const navigate = useNavigate(); */
+  
+function sendData(e) {
     e.preventDefault();
+
     const newReview = {
-        ratings,
+        productName,
+        UserName,
         comment,
-        productId,
-        userId,
     };
 
+  
     axios
       .post("http://Localhost:8070/review/add", newReview)
       .then(() => {
         alert("Thank you for your feedback!");
 
-        // setRatings("");
-        // setComment("");
-        // setProductId("");
-        // setUserId("");
-        // navigate("");
+        setProductName("");
+        setUserName("");
+        setComment("");
+     
       })
+      
       .catch((err) => {
         alert(err);
       });
+
+     
   }
 
   return (
@@ -40,9 +49,8 @@ export default function AddReview() {
         <div className="container my-5 py-5">
           <div className="row mb-5">
             <div className="col-12">
-              <h3 className="fs-5 text-center mb-0">Reviews</h3>
               <h1 className="display-6 text-center mb-4">
-                Give Your <b>Review</b>
+                Give Your Feedbacks
               </h1>
               <hr className="w-25 mx-auto" />
             </div>
@@ -51,63 +59,48 @@ export default function AddReview() {
             <div className="col-md-6">
               <form onSubmit={sendData}>
                 <div className="mb-3">
-                  <label htmlFor="name" className="form-label">
-                    Your Name
+                  <label htmlFor="Pname" className="form-label">
+                    Product
                   </label>
                   <input type="text"
                     className="form-control"
-                    id="name"
-                    placeholder="John Smith"
+                    id="productName"
                     onChange={(e) => {
-                        setRatings(e.target.value);
+                        setProductName(e.target.value);
                     }
                     }
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="exampleFormControlInput1" className="form-label">
-                    Email address
+                  <label htmlFor="Uname" className="form-label">
+                    Your Name
                   </label>
                   <input
-                    type="email"
+                    type="text"
                     className="form-control"
-                    id="exampleFormControlInput1"
-                    placeholder="name@example.com"
-                    name="email"
+                    id="userName"                    
                     onChange={(e) => {
-                        setComment(e.target.value);
+                        setUserName(e.target.value);
                     }
                     }
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="exampleFormControlTextarea1" className="form-label">
+                  <label htmlFor="comment" className="form-label">
                     Your Message
                   </label>
                   <textarea
                     className="form-control"
-                    id="exampleFormControlTextarea1"
+                    id="comment"
                     rows="5"
-
+                    maxLength={500}
                     onChange={(e) => {
-                        setProductId(e.target.value);
+                        setComment(e.target.value);
                     }
                     }
                   ></textarea>
                 </div>
-                <div class="mb-3">
-                  <label for="exampleFormControlTextarea1" class="form-label">
-                    Contact No </label>
-                  <input type="phone"
-                    class="form-control"
-                    id="phone"
-                    placeholder="07XXXXXXXX"
-                    onChange={(e) => {
-                      setUserId(e.target.value);
-                    }
-                    }
-                  />
-                </div>
+                
                 <button type="submit" className="btn btn-outline-primary rounded-pill px-4">Send Review <i className="fa fa-paper-plane ms-2"></i></button>
               </form>
             </div>
@@ -118,3 +111,5 @@ export default function AddReview() {
     </div>
   );
 }
+
+export default AddReview;
