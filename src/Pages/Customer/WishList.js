@@ -3,6 +3,7 @@ import axios from "axios";
 
 const WishList = () => {
   const [allWishList, setAllWishList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     axios
@@ -32,7 +33,9 @@ const remove = (id) => {
           <form className="form-inline responsive">
           <div class="input-group">
             <input type="search" class="form-control" placeholder="Search"
-              aria-label="Search"/>            
+              aria-label="Search" onChange={(event)=> {
+                setSearchTerm(event.target.value)
+              }}/>            
               <button className="btn btn-success my-2 my-sm-0" type="submit">
               Search
               </button>
@@ -52,7 +55,14 @@ const remove = (id) => {
               </tr>
             </thead>
             
-            {allWishList.map((wishlist, key) => (              
+            {allWishList.filter((val)=> {
+                if(searchTerm == "") {
+                  return val
+                } else if(val.productName.toLowerCase().includes(searchTerm.toLowerCase())) {
+                  return val
+                }
+
+              }).map((wishlist, key) => (              
               <tbody>
                 <tr>
                   <td>{wishlist.productImage}</td>
