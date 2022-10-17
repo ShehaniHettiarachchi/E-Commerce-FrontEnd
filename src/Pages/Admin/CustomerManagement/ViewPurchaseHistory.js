@@ -42,7 +42,7 @@ const ViewOrders = () => {
             <div class="input-group ">
               <input
                 type="search"
-                class="form-control "
+                class="form-control"
                 placeholder="Search"
                 aria-label="Search"
                 aria-describedby="search-addon"
