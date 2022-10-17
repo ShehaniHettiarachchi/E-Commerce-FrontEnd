@@ -58,6 +58,7 @@ const ViewAllReviews = () => {
                   <td>{review.rating}</td>                  
                   <td>{review.comment}</td>
                   <td>{review.time}</td>
+
                 </tr>
               </tbody>          
             ))}
