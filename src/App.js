@@ -12,6 +12,7 @@ import AddReview from "./Pages/Customer/AddReview";
 import CustomerDashboard from "./Pages/Customer/CustomerDashboard";
 import CustomerProfile from "./Pages/Customer/UserProfile";
 import CustomerUpdate from "./Pages/Customer/CustomerUpdate";
+import CustomerReport from "./Pages/Admin/CustomerManagement/CustomerReport";
 
 // Admin Managment
 import ViewAllCustomer from "./Pages/Admin/CustomerManagement/ViewAllCustomers";
@@ -37,6 +38,7 @@ function App() {
         <Route path="/customer-dashboard" element={<CustomerDashboard />} />
         <Route path="/customer-profile" element={<CustomerProfile />} />
         <Route path="/customer-update/:id" element={<CustomerUpdate />} />
+        <Route path="/customer-report" element={<CustomerReport />} />
 
 
         {/*Admin Routes*/}

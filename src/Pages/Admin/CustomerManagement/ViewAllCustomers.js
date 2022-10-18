@@ -100,8 +100,18 @@ const ViewAllCustomer = () => {
                       <Link to={`/update/${setAllCustomer._id}`}> Edit </Link>
                     </td>
                   </tr>
+
+                  
+
+
                 </tbody>
+
+                
               ))}
+              <br></br>
+               <button className=" btn btn-info  btn-sm text-center fw-bold text-white pt-0 mb-4 mb-4 mx-5 w-50">
+                      Report Generate
+                  </button>
           </table>
         </div>
         <div className="col-md-1"></div>

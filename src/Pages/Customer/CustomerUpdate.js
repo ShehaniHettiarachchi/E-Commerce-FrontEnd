@@ -107,7 +107,9 @@ export default function CustomerUpdate() {
                       />
                     </p>
 
-                    <button className=" btn btn-info  btn-sm text-center fw-bold text-white pt-0 mb-4 mb-4 mx-5 w-50">
+                    <button className=" btn btn-info  btn-sm text-center fw-bold text-white pt-0 mb-4 mb-4 mx-5 w-50" onClick={()=> {
+                      window.location.href = "/customer-report";
+                    }}>
                       Save Details
                     </button>
                   </MDBCardBody>
