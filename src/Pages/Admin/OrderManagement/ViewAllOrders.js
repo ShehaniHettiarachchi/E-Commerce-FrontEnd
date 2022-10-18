@@ -3,9 +3,11 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import './ViewAllOrders.css'
 import Swal from "sweetalert2";
+import orderPdf from "./OrderReport";
 
 const ViewAllOrder = () => {
     const [allOrder, setAllOrder] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         axios
@@ -61,6 +63,18 @@ const ViewAllOrder = () => {
             <dev><h2 className="text-center">Order Management</h2></dev>
             <br></br>
             <br></br>
+            <div class="input-group">
+            <input type="search" class="form-control" placeholder="Search"
+              aria-label="Search"
+              onChange={(event)=> {
+                setSearchTerm(event.target.value)
+              }}/>            
+              <button className="btn btn-success my-2 my-sm-0" type="submit">
+              Search
+              </button>
+              <br></br>
+            
+          </div>
             <div className="row">
                 <div className="col-md-1"></div>
 
@@ -68,14 +82,20 @@ const ViewAllOrder = () => {
                     <table className="table text-center">
                         <thead className="thead-light">
                             <th>Order ID</th>
-                            <th>Price</th>
+                            <th>Price(rs)</th>
 
                             <th>Status</th>
 
                             <th>Action</th>
                         </thead>
 
-                        {allOrder.map((order, key) => (
+                        {allOrder.filter((val)=>{
+                            if(searchTerm ==""){
+                                return val
+                            }else if(val._id.toLowerCase().includes(searchTerm.toLocaleLowerCase())){
+                                return val
+                            }
+                        }).map((order, key) => (
                             <tbody>
                                 <tr>
                                     <td>{order._id}</td>

@@ -1,46 +1,132 @@
-import jsPDF from "jspdf";
-import "jspdf-autotable";
+import React, { useState, useEffect,useRef } from "react";
+import {useReactToPrint} from "react-to-print";
+import axios from "axios";
+import {Link} from "react-router-dom";
+import './ViewAllOrders.css'
+import Swal from "sweetalert2";
+import orderPdf from "./OrderReport";
 
-export default function orderPdf(props) {
-  const exportPDF = () => {
-    const unit = "pt";
-    const size = "A4"; // Use A1, A2, A3 or A4
-    const orientation = "portrait"; // portrait or landscape
+const ViewAllOrder = () => {
+    const [allOrder, setAllOrder] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
 
-    const marginLeft = 40;
-    const doc = new jsPDF(orientation, unit, size);
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+      content: () => componentRef.current,
+    });
 
-    doc.setFontSize(15);
+    useEffect(() => {
+        axios
+            .get("http://Localhost:8070/order/")
+            .then((res) => setAllOrder(res.data))
+            .catch((error) => console.log(error));
+    });
 
-    const title = "Order Report";
-    const headers = [["Order ID", "Address", "Contac Number", "/Total Price"]];
+    const deleteOrder = (id) => {
 
-    const data = props.data.map(order => [order.id, order.address, order.phoneNo, order.totalPrice]);
 
-    let content = {
-      startY: 50,
-      head: headers,
-      body: data
+        Swal.fire({
+            title: 'Are You Sure?',
+            text: 'Once deleted, You Will Not Able To Recover These Details ! ',
+            icon: 'warning',
+            dangerMode: true,
+            showCancelButton:true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+          }).then((result)=>{
+            if(result.isConfirmed)
+            {axios.delete(`http://localhost:8070/order/delete/${id}`);
+            Swal.fire({
+              title: 'Success!',
+              text: `Order Deleted Successfully`,
+              icon: 'success',
+              showConfirmButton:false,
+            });
+            setTimeout(() => {
+              window.location.replace("http://localhost:3000/all-orders");
+              
+            },1500);
+          
+          }
+          }).catch((err)=>{
+            Swal.fire({
+              title : 'Error!',
+              text : "Couldn't delete your Details",
+              type : 'error',
+            });
+          });
+
+
+
+       
+
+        setAllOrder(allOrder.filter((elem) => elem.id !== id));
     };
 
-    doc.text(title, marginLeft, 40);
-    doc.autoTable(content);
-    doc.save(`stock_${getFormattedTime()}.pdf`)
-  }
 
-  function getFormattedTime() {
-    var today = new Date();
-    var y = today.getFullYear();
-    // JavaScript months are 0-based.
-    var m = today.getMonth() + 1;
-    var d = today.getDate();
-    var h = today.getHours();
-    var mi = today.getMinutes();
-    var s = today.getSeconds();
-    return y + "-" + m + "-" + d + "-" + h + "-" + mi + "-" + s;
-  }
+    return (
+      <dev ref={componentRef}>
+        <div className="container">
+            <dev><h2 className="text-center">Order Report</h2></dev>
 
-  return (
-    <button onClick={() => exportPDF()} className="btn primary-btn sfont-size" ><i class="fas fa-download"></i> Stock Report</button>
-  )
-}
+            <div class="input-group">
+            
+              <br></br>
+            
+          </div>
+            <div className="row">
+                <div className="col-md-1"></div>
+
+                <div className="col-md-10">
+                    <table className="table text-center">
+                        <thead className="thead-light">
+                            <th>Order ID</th>
+                            <th>Phone No</th>
+                            <th>Address</th>
+                            <th>Price</th>
+
+                        </thead>
+
+                        {allOrder.filter((val)=>{
+                            if(searchTerm ==""){
+                                return val
+                            }else if(val._id.toLowerCase().includes(searchTerm.toLocaleLowerCase())){
+                                return val
+                            }
+                        }).map((order, key) => (
+                            <tbody>
+                                <tr>
+                                    <td>{order._id}</td>
+                                    <td>{order.phoneNo}</td>
+                                    <td>{order.address}</td>
+                                    <td>{order.totalPrice}</td>
+                                    
+
+                                    <td>
+
+
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        ))}
+                    </table>
+                </div>
+                <div className="col-md-1"></div>
+            </div>
+
+            <div className="row">
+                <div className="col-md-1"></div>
+                <div className="col-md-10">
+                </div>
+            </div>
+        </div>
+        
+        <button className="btn btn-primary mb-2 ml-5" onClick={handlePrint}>
+            Print Report Here
+          </button>
+        </dev>
+    );
+};
+
+export default ViewAllOrder;
