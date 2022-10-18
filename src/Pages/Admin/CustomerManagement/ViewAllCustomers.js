@@ -15,6 +15,13 @@ const ViewAllCustomer = () => {
       .catch((error) => console.log(error));
   });
 
+  const deleteCustomer = (id)=> {
+    axios.delete(`http://localhost:8070/customer/delete/${id}`)
+    .then((res)=> alert("User Deleted"));
+
+    setAllCustomer(allCustomer.filter((elem)=> elem.id !== id));
+  }
+
   return (
     <div>
       <br></br>
@@ -59,8 +66,15 @@ const ViewAllCustomer = () => {
                 <h5 className="fw-bold">Role</h5>
               </th>
               <th>
+                <h5 className="fw-bold">Email</h5>
+              </th>
+              <th>
+                <h5 className="fw-bold">Contact</h5>
+              </th>
+              <th>
                 <h5 className="fw-bold">Actions</h5>
               </th>
+              
             </thead>
             {allCustomer
               .filter((val) => {
@@ -95,23 +109,43 @@ const ViewAllCustomer = () => {
                         {setAllCustomer.permissionLevel}
                       </MDBBadge>
                     </td>
-
                     <td>
-                      <Link to={`/update/${setAllCustomer._id}`}> Edit </Link>
+                      <div className="ms-0">
+                        <p className="text-muted mb-1">
+                          {setAllCustomer.email}
+                        </p>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="ms-0">
+                        <p className="text-muted mb-1">
+                          {setAllCustomer.phone_number}
+                        </p>
+                      </div>
+                    </td>
+                    <td >
+                    <button
+                      onClick={() => deleteCustomer(setAllCustomer._id)}
+                      className="btn btn-danger">
+                      Delete
+                    </button>
                     </td>
                   </tr>
-
-                  
-
-
                 </tbody>
-
-                
               ))}
-              <br></br>
-               <button className=" btn btn-info  btn-sm text-center fw-bold text-white pt-0 mb-4 mb-4 mx-5 w-50">
-                      Report Generate
-                  </button>
+            <br></br>
+
+            <div className="col-lg-8 col-1 mr-2"></div>
+            <div className="col-mb-2 mt-4 mr-2">
+              <button
+                className="btn btn-dark rounded-center  "
+                style={{ color: "#FFFFFF" }}
+                onClick={() => {
+                  window.location.href = "/customer-report";
+                }}>
+                Generate Report
+              </button>
+            </div>
           </table>
         </div>
         <div className="col-md-1"></div>

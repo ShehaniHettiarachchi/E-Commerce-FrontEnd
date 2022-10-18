@@ -21,15 +21,12 @@ export default function UpdateUserRole() {
       permissionLevel,
     };
 
-    setName("");
-    setEmail("");
-    setPermissionLevel("");
-
     axios
-      .put(`http://localhost:8070/customer/update/${id}`, Customer)
+      .put(`http://localhost:8070/customer/update/${id}`, Customer,)
       .then((res) => {
         console.log(res.data);
-        navigate("/");
+        alert("Updated");
+        navigate("/customer");
       })
       .catch((err) => {
         console.log(err);
@@ -98,8 +95,8 @@ export default function UpdateUserRole() {
                 onChange={(e) => {
                   setPermissionLevel(e.target.value);
                 }}>
-                <option>USER</option>
-                <option value="1">ADMIN</option>
+                <option value="USER">USER</option>
+                <option value="ADMIN">ADMIN</option>
               </Form.Select>
             </MDBRow>
 
