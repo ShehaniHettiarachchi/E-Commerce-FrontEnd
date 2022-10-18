@@ -13,17 +13,16 @@ function AddReview() {
   });
 
   const navigate = useNavigate(); */
-  
-function sendData(e) {
+
+  function sendData(e) {
     e.preventDefault();
 
     const newReview = {
-        productName,
-        UserName,
-        comment,
+      productName,
+      UserName,
+      comment,
     };
 
-  
     axios
       .post("http://Localhost:8070/review/add", newReview)
       .then(() => {
@@ -32,14 +31,11 @@ function sendData(e) {
         setProductName("");
         setUserName("");
         setComment("");
-     
       })
-      
+
       .catch((err) => {
         alert(err);
       });
-
-     
   }
 
   return (
@@ -55,20 +51,20 @@ function sendData(e) {
               <hr className="w-25 mx-auto" />
             </div>
           </div>
-          <div className="row">            
+          <div className="row">
             <div className="col-md-6">
               <form onSubmit={sendData}>
                 <div className="mb-3">
                   <label htmlFor="Pname" className="form-label">
                     Product
                   </label>
-                  <input type="text"
+                  <input
+                    type="text"
                     className="form-control"
                     id="productName"
                     onChange={(e) => {
-                        setProductName(e.target.value);
-                    }
-                    }
+                      setProductName(e.target.value);
+                    }}
                   />
                 </div>
                 <div className="mb-3">
@@ -78,11 +74,10 @@ function sendData(e) {
                   <input
                     type="text"
                     className="form-control"
-                    id="userName"                    
+                    id="userName"
                     onChange={(e) => {
-                        setUserName(e.target.value);
-                    }
-                    }
+                      setUserName(e.target.value);
+                    }}
                   />
                 </div>
                 <div className="mb-3">
@@ -95,13 +90,15 @@ function sendData(e) {
                     rows="5"
                     maxLength={500}
                     onChange={(e) => {
-                        setComment(e.target.value);
-                    }
-                    }
-                  ></textarea>
+                      setComment(e.target.value);
+                    }}></textarea>
                 </div>
-                
-                <button type="submit" className="btn btn-outline-primary rounded-pill px-4">Send Review <i className="fa fa-paper-plane ms-2"></i></button>
+
+                <button
+                  type="submit"
+                  className="btn btn-outline-primary rounded-pill px-4">
+                  Send Review <i className="fa fa-paper-plane ms-2"></i>
+                </button>
               </form>
             </div>
           </div>

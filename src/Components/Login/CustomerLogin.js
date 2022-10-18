@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import makeToast from "../../Components/toast/index";
 
 import {
   MDBBtn,
@@ -14,7 +15,6 @@ import {
 export default function CustomerLogin() {
   const [data, setData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
@@ -25,7 +25,7 @@ export default function CustomerLogin() {
     try {
       const url = "http://localhost:8070/customer/login";
       const { data: res } = await axios.post(url, data);
-      alert("LogIn successfull");
+      makeToast({ type: "success", message: "Login Successful...!!!" });
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("uID", res.data.customer._id);
       localStorage.setItem("email", res.data.customer.email);
@@ -33,7 +33,8 @@ export default function CustomerLogin() {
         "permissionLevel",
         res.data.customer.permissionLevel,
       );
-      navigate("/");
+
+      window.location.href = "/";
       console.log(res.message);
     } catch (error) {
       if (
@@ -41,7 +42,7 @@ export default function CustomerLogin() {
         error.response.status >= 400 &&
         error.response.status <= 500
       ) {
-        alert("Login Failed, Please Check Your Email or Password");
+        makeToast({ type: "error", message: "Invalid Email or Password" });
         setData({ email: "", password: "" });
         setError(error.response.data.message);
       }
@@ -97,10 +98,7 @@ export default function CustomerLogin() {
               </a>
             </p>
             <p className="ms-5 text-center">
-              Don't have an account?{" "}
-              <a href="#!" class="link-info">
-                Register here
-              </a>
+              Don't have an account? <Link to="/register">Register here</Link>
             </p>
           </div>
         </MDBCol>
