@@ -53,6 +53,11 @@ const deleteCart = (id) => {
     setAllCart(allCart.filter((elem) => elem.id !== id));
 };
 
+const handleClick = (id) => {
+  axios.delete(`http://localhost:8070/cart/get/${id}`);
+  window.location.replace("http://localhost:3000/add-review");
+};
+
   return (
     <div class='responsive'>   
     <br></br><br></br>
@@ -84,12 +89,11 @@ const deleteCart = (id) => {
           <thead className="thead-light">
               <tr>
 
-              <th>Item</th>
-              <th></th>
+              <th>Item</th>              
               <th>Unit Price</th>
               <th>Quantity</th>
-
               <th>Subtotal</th>
+              <th></th>
               <th></th>
               </tr>
             </thead>
@@ -103,7 +107,7 @@ const deleteCart = (id) => {
               }).map((cart, key) => (              
               <tbody>
                 <tr>
-                  <td>{cart.productImage}</td>
+                  {/* <td>{cart.productImage}</td> */}
                   <td>{cart.productName}</td>                  
                   <td>Rs.{cart.productPrice}</td>
                   <td>               
@@ -121,6 +125,10 @@ const deleteCart = (id) => {
 </svg>
                     </button>
                     </td>
+
+                    <td> 
+                      <button className="btn btn-outline-info btn-sm"
+                      onClick={() => handleClick(cart.productName)}>Add feedback</button></td>
                 </tr>
               </tbody> 
             ))}

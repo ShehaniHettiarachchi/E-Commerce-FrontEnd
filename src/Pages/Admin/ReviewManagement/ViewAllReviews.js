@@ -15,7 +15,7 @@ const ViewAllReviews = () => {
   });
 
   return (
-    <div class="responsive">
+    <div class="container responsive">
       <br></br>
       <br></br>
       <div className="row">
@@ -84,7 +84,6 @@ const ViewAllReviews = () => {
       <div className="row">
         <div className="col-md-1"></div>
         <div className="col-md-2">
-          {/* <button onClick={handlePrint} className="btn-warning"><FiPrinter/> Print Report </button> */}
           <div
             className="d-grid"
             style={{ marginLeft: 100, marginRight: 100, marginTop: 20 }}>
