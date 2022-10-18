@@ -2,7 +2,7 @@ import "./App.css";
 // Public Pages
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/CustomerLogin";
-import Header from "./Components/NavBar/navBar"
+import Header from "./Components/NavBar/navBar";
 
 //Customer Management
 import CustomerRegistration from "./Pages/Customer/CustomerRegister";
@@ -11,8 +11,7 @@ import WishList from "./Pages/Customer/WishList";
 import AddReview from "./Pages/Customer/AddReview";
 import CustomerDashboard from "./Pages/Customer/CustomerDashboard";
 import CustomerProfile from "./Pages/Customer/UserProfile";
-import UpdateProfile from "./Pages/Customer/UpdateProfile";
-
+import CustomerUpdate from "./Pages/Customer/CustomerUpdate";
 
 // Admin Managment
 import ViewAllCustomer from "./Pages/Admin/CustomerManagement/ViewAllCustomers";
@@ -37,8 +36,8 @@ function App() {
         <Route path="/add-review" element={<AddReview />} />
         <Route path="/customer-dashboard" element={<CustomerDashboard />} />
         <Route path="/customer-profile" element={<CustomerProfile />} />
-        <Route path ="/customer-update-profile/:id"  element={<UpdateProfile/>} />
-      
+        <Route path="/customer-update/:id" element={<CustomerUpdate />} />
+
 
         {/*Admin Routes*/}
         <Route path="/all-review" element={<ViewAllReview />} />

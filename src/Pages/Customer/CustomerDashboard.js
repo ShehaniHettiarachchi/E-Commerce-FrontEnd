@@ -1,10 +1,7 @@
 import React from "react";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function CustomerDashboard() {
-  const [customer, setCustomer] = useState([]);
-
   const id = localStorage.getItem("uID");
   const email = localStorage.getItem("email");
   console.log(id);

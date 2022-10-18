@@ -86,7 +86,7 @@ export default function CustomerRegister() {
                   <h8 className="mb-5 text-light bg-secondary">
                     Fill the details below to submit register account
                   </h8>
-                  <form className='was-validated' onSubmit={sendData}>
+                  <form className="was-validated" onSubmit={sendData}>
                     <MDBRow>
                       <MDBInput
                         wrapperClass="mb-4 "
@@ -97,7 +97,7 @@ export default function CustomerRegister() {
                         onChange={(e) => {
                           setName(e.target.value);
                         }}
-                        required 
+                        required
                       />
                       <MDBInput
                         wrapperClass="mb-4"
