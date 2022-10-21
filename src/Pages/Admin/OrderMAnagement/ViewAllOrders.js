@@ -26,7 +26,7 @@ const ViewAllOrder = () => {
     const viewSingleOrder=(_id)=>{
         localStorage.setItem("Id",_id)
 
-        window.location.href ="order"
+        window.location.href ="single-order"
     }
 
 
