@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './ViewAllOrders.css'
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const ViewAllOrder = () => {
@@ -46,7 +47,7 @@ const ViewAllOrder = () => {
               <br></br>
             
           </div>
-            <div className="row">
+            <div className="container">
                 <div className="col-md-1"></div>
 
                 <div className="col-md-10">
@@ -76,16 +77,11 @@ const ViewAllOrder = () => {
                                     <td>
                                         <button
                                             onClick={() => deleteOrder(order._id)}
-                                            className="btn btn-danger mr-1">
+                                            className="btn btn-danger mr-2">
                                             Delete Order
-                                        </button>
-
-                                        <button
-                                            className="btn btn-primary ml-1"
-                                            onClick={()=>viewSingleOrder(order._id)}
-                                            >
-                                            Process
-                                        </button>
+                                        </button>&nbsp;
+                                        
+                                        <Link to={`/orderid/${order._id}`}><button className="btn btn-primary ml-2">Process</button></Link>
                                     </td>
                                 </tr>
                             </tbody>
