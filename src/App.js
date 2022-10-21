@@ -15,6 +15,7 @@ import ViewAllCustomer from "./Pages/Admin/CustomerManagement/ViewAllCustomers";
 import ViewAllReview from "./Pages/Admin/ReviewManagement/ViewAllReviews";
 import ViewPurchaseHistory from "./Pages/Admin/CustomerManagement/ViewPurchaseHistory";
 import ViewSingleOrder from "./Pages/Admin/OrderManagement/ViewOrder";
+import ViewAllOrders from "./Pages/Admin/OrderManagement/ViewAllOrders";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -35,8 +36,9 @@ function App() {
         <Route path="/all-review" element={<ViewAllReview />} />
         <Route path="/customer" element={<ViewAllCustomer />} />
         <Route path="/order" element={<ViewPurchaseHistory />} />
+        <Route path="/orders" element={<ViewAllOrders />} />
         <Route path="/review" element={<ViewAllReview />} />
-        <Route path="/view-order" element={<ViewSingleOrder />} />
+        <Route path="/orderid/:id" element={<ViewSingleOrder />} />
 
       </Routes>
     </Router>
