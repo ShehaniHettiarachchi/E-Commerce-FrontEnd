@@ -59,12 +59,13 @@ const handleClick = (id) => {
 };
 
   return (
-    <div class='responsive'>   
-    <br></br><br></br>
-      <div className="row">
+    <div class='responsive'>      
+    <br></br><br></br>  
+
+      <div className="row">        
         <div className="col-md-1"></div>
         <div className="col-md-10">
-        <div className="row">
+        <div className="row">          
         <h1 className="text-start">Shopping Cart</h1>
       </div><div className="row">
         <div className="col-lg-9 col-0"></div>
@@ -147,7 +148,13 @@ const handleClick = (id) => {
             }}>
             Continue Shopping
           </button>
-        </div>
+        
+        <div className="col-md-10"> <button
+            className="btn btn-outline-warning  mb-2 rounded-pill px-4"
+            onClick={() => {window.location.href = "/wishlist";}}>
+            WishList
+          </button></div>
+      </div>
       </div>
     </div>
   );
