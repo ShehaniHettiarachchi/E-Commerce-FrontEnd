@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './ViewAllOrders.css'
 import Swal from "sweetalert2";
-import orderPdf from "./OrderReport";
 
 const ViewAllOrder = () => {
     const [allOrder, setAllOrder] = useState([]);
