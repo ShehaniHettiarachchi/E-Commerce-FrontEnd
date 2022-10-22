@@ -97,7 +97,7 @@ const ViewAllOrder = () => {
                     <button
                         className="btn btn-primary mb-2"
                         onClick={() => {
-                            window.location.href = "/supplierreport";
+                            window.location.href = "/orderreport";
                         }}>
                         Generate Order Report
                     </button>
