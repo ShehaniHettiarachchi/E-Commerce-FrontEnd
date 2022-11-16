@@ -43,13 +43,25 @@ const navBar = () => {
               )}
 
               {localStorage.getItem("permissionLevel") == "ADMIN" ? (
-                <Nav.Link href="/order">Purchase History</Nav.Link>
+                <Nav.Link href="/purchase">Purchase History</Nav.Link>
               ) : (
                 <></>
               )}
 
               {localStorage.getItem("permissionLevel") == "ADMIN" ? (
                 <Nav.Link href="#">Orders</Nav.Link>
+              ) : (
+                <></>
+              )}
+
+              {localStorage.getItem("permissionLevel") == "ADMIN" ? (
+                <Nav.Link href="/review">Reviews</Nav.Link>
+              ) : (
+                <></>
+              )}
+
+              {localStorage.getItem("permissionLevel") == "ADMIN" ? (
+                <Nav.Link href="/wishlist">Wish List</Nav.Link>
               ) : (
                 <></>
               )}

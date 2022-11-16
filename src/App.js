@@ -19,6 +19,7 @@ import ViewAllCustomer from "./Pages/Admin/CustomerManagement/ViewAllCustomers";
 import ViewAllReview from "./Pages/Admin/ReviewManagement/ViewAllReviews";
 import ViewPurchaseHistory from "./Pages/Admin/CustomerManagement/ViewPurchaseHistory";
 import UpdateUserRole from "./Pages/Admin/CustomerManagement/UpdateUserRole";
+import AddPurchase from "./Pages/Admin/CustomerManagement/AddPurchase"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -44,9 +45,10 @@ function App() {
         {/*Admin Routes*/}
         <Route path="/all-review" element={<ViewAllReview />} />
         <Route path="/customer" element={<ViewAllCustomer />} />
-        <Route path="/order" element={<ViewPurchaseHistory />} />
+        <Route path="/purchase" element={<ViewPurchaseHistory />} />
         <Route path="/review" element={<ViewAllReview />} />
         <Route path="/update/:id" element={<UpdateUserRole />} />
+        <Route path="/add-purchase" element={<AddPurchase/>}/>
       </Routes>
     </Router>
   );

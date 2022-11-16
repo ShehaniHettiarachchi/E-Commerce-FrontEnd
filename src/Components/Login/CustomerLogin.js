@@ -34,7 +34,7 @@ export default function CustomerLogin() {
         res.data.customer.permissionLevel,
       );
 
-      window.location.href = "/";
+      window.location.href = "/customer-profile";
       console.log(res.message);
     } catch (error) {
       if (

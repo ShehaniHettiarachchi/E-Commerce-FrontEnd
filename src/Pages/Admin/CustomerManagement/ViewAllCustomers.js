@@ -27,7 +27,7 @@ const ViewAllCustomer = () => {
       <br></br>
       <div className="row">
         <h1
-          className="fw-bold mb-2 ps-5 pb-5 text-center"
+          className="fw-bold mb-2 ps-5 pb-5 pt-5  text-center"
           style={{ color: "#001E6C" }}>
           User Details
         </h1>
