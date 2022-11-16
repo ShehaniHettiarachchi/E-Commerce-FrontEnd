@@ -1,4 +1,4 @@
-import jsPDF from "jspdf";
+/*import jsPDF from "jspdf";
 import "jspdf-autotable";
 
 export default function ReviewPdf(props) {
@@ -44,4 +44,4 @@ export default function ReviewPdf(props) {
     <button onClick={() => exportPDF()} className="btn btn-primary  mb-2 rounded-pill px-4" >Report</button>
     </div>
   )
-}
+}*/

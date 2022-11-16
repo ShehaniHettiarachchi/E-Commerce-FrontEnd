@@ -18,8 +18,6 @@ export default function CustomerRegister() {
   const [email, setEmail] = useState("");
   const [phone_number, setPhone_number] = useState("");
   const [password, setPassword] = useState("");
-  
-
 
   const navigate = useNavigate();
   const { reset } =
@@ -31,7 +29,6 @@ export default function CustomerRegister() {
         email: "",
         phone_number: "",
         password: "",
-        
       },
     };
 
@@ -48,8 +45,9 @@ export default function CustomerRegister() {
     axios
       .post("http://Localhost:8070/customer/register", newCustomer)
       .then(() => {
-        makeToast({type : "success", message: "Registration Successful"});
-     
+        makeToast({ type: "success", message: "Registration Successful" });
+        window.location.href = "/customer-login";
+
         setName(" ");
         setEmail("");
         setPhone_number("");
@@ -57,7 +55,7 @@ export default function CustomerRegister() {
         navigate("");
       })
       .catch((err) => {
-        makeToast({type : "error", message: "Invalid Email"});
+        makeToast({ type: "error", message: "Invalid Details" });
       });
   }
 
@@ -78,7 +76,7 @@ export default function CustomerRegister() {
                 />
               </MDBCol>
 
-              <MDBCol md="1">
+              <MDBCol md="">
                 <MDBCardBody
                   className="text-black d-flex flex-column justify-content-center "
                   style={{ maxWidth: "620px" }}>
@@ -88,7 +86,7 @@ export default function CustomerRegister() {
                   <h8 className="mb-5 text-light bg-secondary">
                     Fill the details below to submit register account
                   </h8>
-                  <form onSubmit={sendData}>
+                  <form className="was-validated" onSubmit={sendData}>
                     <MDBRow>
                       <MDBInput
                         wrapperClass="mb-4 "
@@ -99,6 +97,7 @@ export default function CustomerRegister() {
                         onChange={(e) => {
                           setName(e.target.value);
                         }}
+                        required
                       />
                       <MDBInput
                         wrapperClass="mb-4"
@@ -109,6 +108,7 @@ export default function CustomerRegister() {
                         onChange={(e) => {
                           setEmail(e.target.value);
                         }}
+                        required
                       />
                       <MDBInput
                         wrapperClass="mb-4"
@@ -119,6 +119,8 @@ export default function CustomerRegister() {
                         onChange={(e) => {
                           setPhone_number(e.target.value);
                         }}
+                        required
+                        pattern="^[0-9]+$"
                       />
                       <MDBInput
                         wrapperClass="mb-4"
@@ -129,26 +131,14 @@ export default function CustomerRegister() {
                         onChange={(e) => {
                           setPassword(e.target.value);
                         }}
-                      />
-                      <MDBInput
-                        wrapperClass="mb-4"
-                        placeholder="Repeat Password"
-                        size="sm"
-                        id="repeatpassword"
-                        type="repeatpassword"
-                        onChange={(e) => {
-                          setPassword(e.target.value);
-                        }}
+                        required
                       />
                     </MDBRow>
 
                     <div className="d-flex justify-content-end pt-3">
-                      <button 
-                        
-                      
-                        type="button"
-                        className="btn btn-secondary btn-sl text-center fw-normal text-white pt-2 mb-4 mx-1 w-50"
-                        >
+                      <button
+                        type="clear"
+                        className="btn btn-secondary btn-sl text-center fw-normal text-white pt-2 mb-4 mx-1 w-50">
                         Reset All
                       </button>
                       <button

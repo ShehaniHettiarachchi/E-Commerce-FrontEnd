@@ -1,3 +1,14 @@
+
+import React from "react";
+
+export default function Home() {
+  return (
+    <div  className="GeeksForGeeks">
+      <h1>GeeksForGeeks</h1>
+      </div>
+  );
+}
+
 import React, { Fragment, useEffect, useState } from 'react';
 import Footer from '../layout/Footer/Footer'
 import Header from '../layout/Header/Header'
@@ -90,3 +101,4 @@ const Home = () => {
 
 
 export default Home;
+

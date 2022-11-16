@@ -36,5 +36,14 @@
     transform: rotate(360deg);
   }
 }
+.GeeksForGeeks {
+  background-image: 
+  url(
+"https://www.pixelstalk.net/wp-content/uploads/2016/07/Download-Free-Laptop-Background.jpg");
+  background-size: "cover";
+  height: 100vh;
+  width:213vh;
+  margin-top: 0px;
+  margin-bottom: 0px;
 
-
+}

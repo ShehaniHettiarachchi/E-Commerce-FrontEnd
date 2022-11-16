@@ -35,8 +35,8 @@ const ViewAllReviews = () => {
                     class="form-control"
                     placeholder="Search"
                     aria-label="Search"
-                    onChange={(event)=> {
-                      setSearchTerm(event.target.value)
+                    onChange={(event) => {
+                      setSearchTerm(event.target.value);
                     }}
                   />
                   <button
@@ -59,6 +59,27 @@ const ViewAllReviews = () => {
                 </tr>
               </thead>
 
+
+              {allReviews
+                .filter((val) => {
+                  if (searchTerm == "") {
+                    return val;
+                  } else if (
+                    val.comment.toLowerCase().includes(searchTerm.toLowerCase())
+                  ) {
+                    return val;
+                  }
+                })
+                .map((review, key) => (
+                  <tbody>
+                    <tr>
+                      <td>{review.productName}</td>
+                      <td>{review.comment}</td>
+                      <td>{review.time}</td>
+                    </tr>
+                  </tbody>
+                ))}
+
               {allReviews.filter((val)=> {
                 if(searchTerm == "") {
                   return val
@@ -76,6 +97,7 @@ const ViewAllReviews = () => {
                   </tr>
                 </tbody>
               ))}
+
             </table>
           </div>
         </div>
