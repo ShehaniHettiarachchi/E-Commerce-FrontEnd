@@ -1,7 +1,7 @@
 /*import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-export default function StockPdf(props) {
+export default function ReviewPdf(props) {
   const exportPDF = () => {
     const unit = "pt";
     const size = "A4"; // Use A1, A2, A3 or A4
@@ -13,8 +13,8 @@ export default function StockPdf(props) {
     doc.setFontSize(15);
 
     const title = "Review Report";    
-    const headers = [["Product Name", "Comment", "Time"]];
-    const data = props.data.map(elt => [elt.productId, elt.comment, elt.time]);
+    const headers = [["Product Name", "Comment"]];
+    const data = props.data.map(elt => [elt.productName, elt.comment]);
 
     let content = {
       startY: 50,

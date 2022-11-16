@@ -3,6 +3,7 @@ import axios from "axios";
 
 const ViewCart = () => {
   const [allCart, setAllCart] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     //const userId = localStorage.getItem("userId");
@@ -49,7 +50,13 @@ const ViewCart = () => {
     setAllCart(allCart.filter((elem) => elem.id !== id));
   };
 
+const handleClick = (id) => {
+  axios.delete(`http://localhost:8070/cart/get/${id}`);
+  window.location.replace("http://localhost:3000/add-review");
+};
+
   return (
+
     <div class="responsive">
       <br></br>
       <br></br>
@@ -82,11 +89,43 @@ const ViewCart = () => {
 
           <table className="table table-hover text-center responsive">
             <thead className="thead-light">
+
+    <div class='responsive'>      
+    <br></br><br></br>  
+
+      <div className="row">        
+        <div className="col-md-1"></div>
+        <div className="col-md-10">
+        <div className="row">          
+        <h1 className="text-start">Shopping Cart</h1>
+      </div><div className="row">
+        <div className="col-lg-9 col-0"></div>
+        <div className="col-lg-3 col-2">
+          <form className="form-inline responsive">
+          <div class="input-group">
+            <input type="search" class="form-control" placeholder="Search"
+              aria-label="Search"
+              onChange={(event)=> {
+                setSearchTerm(event.target.value)
+              }}/>            
+              <button className="btn btn-success my-2 my-sm-0" type="submit">
+              Search
+              </button>
+            
+          </div>       
+          </form>
+        </div>
+      </div>
+
+          <table className="table table-hover text-center responsive">            
+          <thead className="thead-light">
+
               <tr>
                 <th>Item</th>
                 <th></th>
                 <th>Unit Price</th>
                 <th>Quantity</th>
+
 
                 <th>Subtotal</th>
                 <th></th>
@@ -98,6 +137,28 @@ const ViewCart = () => {
                 <tr>
                   <td>{cart.productImage}</td>
                   <td>{cart.productName}</td>
+
+              <th>Item</th>              
+              <th>Unit Price</th>
+              <th>Quantity</th>
+              <th>Subtotal</th>
+              <th></th>
+              <th></th>
+              </tr>
+            </thead>
+            
+            {allCart.filter((val)=> {
+                if(searchTerm == "") {
+                  return val
+                } else if(val.productName.toLowerCase().includes(searchTerm.toLowerCase())) {
+                  return val
+                }
+              }).map((cart, key) => (              
+              <tbody>
+                <tr>
+                  {/* <td>{cart.productImage}</td> */}
+                  <td>{cart.productName}</td>                  
+
                   <td>Rs.{cart.productPrice}</td>
                   <td>
                     <button
@@ -140,7 +201,15 @@ const ViewCart = () => {
                         />
                       </svg>
                     </button>
+
                   </td>
+
+                    </td>
+
+                    <td> 
+                      <button className="btn btn-outline-info btn-sm"
+                      onClick={() => handleClick(cart.productName)}>Add feedback</button></td>
+
                 </tr>
               </tbody>
             ))}
@@ -159,7 +228,13 @@ const ViewCart = () => {
             }}>
             Continue Shopping
           </button>
-        </div>
+        
+        <div className="col-md-10"> <button
+            className="btn btn-outline-warning  mb-2 rounded-pill px-4"
+            onClick={() => {window.location.href = "/wishlist";}}>
+            WishList
+          </button></div>
+      </div>
       </div>
     </div>
   );

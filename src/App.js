@@ -20,6 +20,9 @@ import ViewAllReview from "./Pages/Admin/ReviewManagement/ViewAllReviews";
 import ViewPurchaseHistory from "./Pages/Admin/CustomerManagement/ViewPurchaseHistory";
 import UpdateUserRole from "./Pages/Admin/CustomerManagement/UpdateUserRole";
 import AddPurchase from "./Pages/Admin/CustomerManagement/AddPurchase"
+import ViewSingleOrder from "./Pages/Admin/OrderManagement/ViewOrder";
+import ViewAllOrders from "./Pages/Admin/OrderManagement/ViewAllOrders";
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -49,6 +52,12 @@ function App() {
         <Route path="/review" element={<ViewAllReview />} />
         <Route path="/update/:id" element={<UpdateUserRole />} />
         <Route path="/add-purchase" element={<AddPurchase/>}/>
+        <Route path="/order" element={<ViewPurchaseHistory />} />
+        <Route path="/orders" element={<ViewAllOrders />} />
+        <Route path="/review" element={<ViewAllReview />} />
+        <Route path="/orderid/:id" element={<ViewSingleOrder />} />
+
+
       </Routes>
     </Router>
   );

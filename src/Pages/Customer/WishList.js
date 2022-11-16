@@ -3,6 +3,7 @@ import axios from "axios";
 
 const WishList = () => {
   const [allWishList, setAllWishList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     axios
@@ -25,6 +26,7 @@ const WishList = () => {
       <div className="row">
         <div className="col-md-1"></div>
         <div className="col-md-10">
+
           <div className="row">
             <h1 className="text-start">Favourites</h1>
           </div>
@@ -48,6 +50,27 @@ const WishList = () => {
               </form>
             </div>
           </div>
+
+        <div className="row">
+        <h1 className="text-start">Favourites</h1>
+      </div><div className="row">
+        <div className="col-lg-9 col-0"></div>
+        <div className="col-lg-3 col-2">
+          <form className="form-inline responsive">
+          <div class="input-group">
+            <input type="search" class="form-control" placeholder="Search"
+              aria-label="Search" onChange={(event)=> {
+                setSearchTerm(event.target.value)
+              }}/>            
+              <button className="btn btn-success my-2 my-sm-0" type="submit">
+              Search
+              </button>
+            
+          </div>       
+          </form>
+        </div>
+      </div>
+
           <table className="table table-hover text-center responsive">
             <thead className="thead-light">
               <tr>
@@ -58,7 +81,19 @@ const WishList = () => {
               </tr>
             </thead>
 
+
             {allWishList.map((wishlist, key) => (
+
+            
+            {allWishList.filter((val)=> {
+                if(searchTerm == "") {
+                  return val
+                } else if(val.productName.toLowerCase().includes(searchTerm.toLowerCase())) {
+                  return val
+                }
+
+              }).map((wishlist, key) => (              
+
               <tbody>
                 <tr>
                   <td>{wishlist.productImage}</td>

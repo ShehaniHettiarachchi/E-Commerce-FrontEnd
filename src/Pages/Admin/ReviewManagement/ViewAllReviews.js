@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment, useRef } from "react";
 import axios from "axios";
 
-import StockPdf from "../../Customer/reviewpdf";
+import ReviewPdf from "../../Customer/reviewpdf";
 
 const ViewAllReviews = () => {
   const [allReviews, setAllReviews] = useState([]);
@@ -15,10 +15,11 @@ const ViewAllReviews = () => {
   });
 
   return (
-    <div class="responsive">
+    <div class="container responsive">
       <br></br>
       <br></br>
       <div className="row">
+      
         <div className="col-md-1"></div>
         <div className="col-md-10">
           <div className="row">
@@ -52,10 +53,12 @@ const ViewAllReviews = () => {
               <thead className="thead-light">
                 <tr>
                   <th>Product</th>
+                  <th>Customer</th>
                   <th>Comment</th>
                   <th>Time</th>
                 </tr>
               </thead>
+
 
               {allReviews
                 .filter((val) => {
@@ -76,6 +79,25 @@ const ViewAllReviews = () => {
                     </tr>
                   </tbody>
                 ))}
+
+              {allReviews.filter((val)=> {
+                if(searchTerm == "") {
+                  return val
+                } else if(val.productName.toLowerCase().includes(searchTerm.toLowerCase())) {
+                  return val
+                }
+
+              }).map((review, key) => (
+                <tbody>
+                  <tr>
+                    <td>{review.productName}</td>
+                    <td>{review.UserName}</td>
+                    <td align="left">{review.comment}</td>
+                    <td>{review.time}</td>
+                  </tr>
+                </tbody>
+              ))}
+
             </table>
           </div>
         </div>
@@ -85,11 +107,10 @@ const ViewAllReviews = () => {
       <div className="row">
         <div className="col-md-1"></div>
         <div className="col-md-2">
-          {/* <button onClick={handlePrint} className="btn-warning"><FiPrinter/> Print Report </button> */}
           <div
             className="d-grid"
             style={{ marginLeft: 100, marginRight: 100, marginTop: 20 }}>
-            <StockPdf data={allReviews} />
+            <ReviewPdf data={allReviews} />
           </div>
         </div>
       </div>
